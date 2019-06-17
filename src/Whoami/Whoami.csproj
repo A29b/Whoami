@@ -8,6 +8,9 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/A29b/whoami</RepositoryUrl>
     <PackageTags>Identity Random Generator</PackageTags>
+    <Authors>A29b</Authors>
+    <Company>A29b</Company>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
