@@ -22,9 +22,8 @@ namespace Whoami
             // turning
             var xor = bytes.Select(x => (byte)(x ^ byte.MaxValue)).ToArray();
 
-            var prefix = "ut";
             var id = BitConverter.ToString(xor).Replace("-", string.Empty).ToLower();
-            return prefix + id;
+            return id;
         }
     }
 }
