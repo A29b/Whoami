@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Whoami
@@ -12,17 +13,17 @@ namespace Whoami
         {
             var ticks = datetime.ToUniversalTime().ToUnixTimeMilliseconds();
 
-            var bytes = BitConverter.GetBytes(ticks);
+            IEnumerable<byte> bytes = BitConverter.GetBytes(ticks);
             if (BitConverter.IsLittleEndian)
-                bytes = bytes.Reverse().ToArray();
+                bytes = bytes.Reverse();
 
             // exclude paddigs of zero.
-            bytes = bytes.SkipWhile(x => x == byte.MinValue).ToArray();
+            bytes = bytes.SkipWhile(x => x == byte.MinValue);
 
-            // turning
-            var xor = bytes.Select(x => (byte)(x ^ byte.MaxValue)).ToArray();
+            // turning as xor
+            bytes = bytes.Select(x => (byte)(x ^ byte.MaxValue));
 
-            var id = BitConverter.ToString(xor).Replace("-", string.Empty).ToLower();
+            var id = BitConverter.ToString(bytes.ToArray()).Replace("-", string.Empty).ToLower();
             return id;
         }
     }
